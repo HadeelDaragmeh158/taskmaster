@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titleMyTask"
         android:layout_width="341dp"
         android:layout_height="45dp"
         android:fontFamily="casual"
@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Button3"
+        android:text="Button1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -84,7 +84,7 @@
         android:id="@+id/buttonTask2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button1"
+        android:text="Button2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonTask3"
         app:layout_constraintHorizontal_bias="0.485"
@@ -96,7 +96,7 @@
         android:id="@+id/buttonTask3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button2"
+        android:text="button3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

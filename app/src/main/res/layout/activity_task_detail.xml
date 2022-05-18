@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="117dp"
-        android:layout_height="49dp"
-        android:textSize="32dp"
-        android:textColor="@color/teal_700"
+        android:layout_width="380dp"
+        android:layout_height="56dp"
         android:fontFamily="casual"
         android:text="Title"
+        android:textColor="@color/teal_700"
+        android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.129"
