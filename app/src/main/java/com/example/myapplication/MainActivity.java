@@ -56,14 +56,19 @@ public class MainActivity extends AppCompatActivity {
 
         buttonTask1.setOnClickListener(v->{
 
+            Log.i(TAG, "Button buttonTask1");
+
             Intent taskDetailIntent = new Intent(this,TaskDetail.class);
             taskDetailIntent.putExtra("Title",buttonTask1.getText().toString());
             startActivity(taskDetailIntent);
 
         });
+
+
         buttonTask2.setOnClickListener(v->{
 
             Log.i(TAG, "Button buttonTask2");
+
             Intent taskDetailIntent = new Intent(this,TaskDetail.class);
             taskDetailIntent.putExtra("Title",buttonTask2.getText().toString());
             startActivity(taskDetailIntent);
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             Intent taskDetailIntent = new Intent(this,TaskDetail.class);
             taskDetailIntent.putExtra("Title",buttonTask3.getText().toString());
             startActivity(taskDetailIntent);
+
         });
 
 
