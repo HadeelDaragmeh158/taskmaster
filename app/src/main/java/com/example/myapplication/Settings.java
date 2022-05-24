@@ -17,9 +17,10 @@ import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
 
+    public static final String USERNAME ="username" ;
     private static final String TAG = Settings.class.getSimpleName();
-    private static final String USERNAME = "username" ;
     private EditText editUsername;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,11 +1,15 @@
 package com.example.myapplication;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Task {
+
+    @PrimaryKey(autoGenerate = true)
+    private Long id ;
     private String title , body , state ;
-    private List<String> stateContentList  = new ArrayList<>();
+
 
     public Task(String title, String body, String state) {
         this.title = title;
@@ -37,13 +41,11 @@ public class Task {
         this.state = state;
     }
 
-    private  void addContentList (){
-        this.stateContentList.add("new");
-        this.stateContentList.add("assigned");
-        this.stateContentList.add("progress");
-        this.stateContentList.add("complete");
+    public Long getId() {
+        return id;
     }
 
-
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
