@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -73,7 +72,6 @@ public class Settings extends AppCompatActivity {
                 if (editable.toString().length() == 0){
                     saveButton.setEnabled(false);
                 }
-
             }
         });
     }
