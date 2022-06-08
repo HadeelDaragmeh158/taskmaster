@@ -1,12 +1,12 @@
 package com.example.myapplication;
+//
+//import androidx.room.Entity;
+//import androidx.room.PrimaryKey;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-@Entity
+//@Entity
 public class Task {
 
-    @PrimaryKey(autoGenerate = true)
+//    @PrimaryKey(autoGenerate = true)
     private Long id ;
     private String title , body , state ;
 

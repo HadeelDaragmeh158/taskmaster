@@ -1,5 +1,12 @@
 package com.example.myapplication;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Task;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,9 +21,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.core.Amplify;
 
 public class AddTask extends AppCompatActivity {
     private static final String TAG = "Tagtest";
@@ -56,6 +60,7 @@ public class AddTask extends AppCompatActivity {
 
 
 
+        configurAmplify();
 
         addTask_addTaskPageButton.setOnClickListener(v->{
 
@@ -67,57 +72,41 @@ public class AddTask extends AppCompatActivity {
 
             String state = taskStateSelector.getSelectedItem().toString();
 
-            com.amplifyframework.datastore.generated.model.Task addnewTask = com.amplifyframework.datastore.generated.model.Task.builder()
-                    .title(myTaskStr).body(doSomthingStr).status(state).build();
 
-            Amplify.API.query(ModelMutation.create(addnewTask),
-                    success-> Log.i(TAG, "create new task"),
-                    error -> Log.e(TAG,"error",error)
-            );
-            Amplify.DataStore.save(addnewTask,
-                    success -> {
-                        Log.i(TAG, "onCreate: saving in datastore succeed ");
-                    } ,
-                    fail->{
-                        Log.i(TAG, "onCreate: saving in datastore failed ");
-                    }
+            Task item = com.amplifyframework.datastore.generated.model.Task.builder()
+                    .title(myTaskStr)
+                    .description(doSomthingStr )
+                    .status(state)
+                    .build();
 
-            );
+            Amplify.API.mutate(
+                ModelMutation.create(item),
+                success -> Log.i(TAG, "Saved item: " + success.getData().getTitle()),
+                error -> Log.e(TAG, "Could not save item to API", error)
+        );
 
-            // saves to the backend
-            Amplify.API.mutate(ModelMutation.create(newTask)
-                    , success -> {
-                        Log.i(TAG, "onCreate: saving in API mutate");
-
-                    }
-                    , fail -> {
-                        Log.i(TAG, "onCreate: NOT saving in API mutate");
-
-                    }
-            );
-
-            Amplify.DataStore.observe(com.amplifyframework.datastore.generated.model.Task.class,
-                    started -> {
-                        Log.i(TAG, "onCreate: observation began");
-                    },
-                    change -> {
-                        Log.i(TAG, change.item().toString());
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("data",change.item().toString());
-                        Message message = new Message();
-                        message.setData(bundle);
-
-                        handler.sendMessage(message);
-                    },
-                    failure -> {
-                        Log.e(TAG, "onCreate: Observation failed");
-                    },
-                    () -> {
-                        Log.i(TAG, "onCreate: Observation complete");
-                    }
-            );
-
+//            Amplify.API.query(
+//                    ModelQuery.list(Task.class, Task.TITLE.contains("Task")),
+//                    response -> {
+//                        for(Task task : response.getData())
+//                            Log.i(TAG," ------->>>>>>> " + task.getTitle());
+//                    },
+//                    error ->{
+//                        Log.e(TAG,"ERROR", error);
+//                    }
+//
+//            );
+//            Amplify.DataStore.query(Task.class,
+//                tasks -> {
+//                    while (tasks.hasNext()) {
+//                        Task task = tasks.next();
+//
+//                        Log.i(TAG, "==== Task ====");
+//                        Log.i(TAG, "Name: " + task.getTitle());
+//                    }
+//                },
+//                failure -> Log.e(TAG, "Could not query DataStore", failure)
+//        );
 
 //            Task task = new Task(myTaskStr , doSomthingStr , "");
 //            Long newTaskID =  AppDatabase.getInstance(getApplicationContext()).userDao().addTask(task);
@@ -155,5 +144,17 @@ public class AddTask extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+
+    private void configurAmplify(){
+        try{
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i(TAG,"Initialised Amplify");
+        } catch (AmplifyException e) {
+            Log.i(TAG, "Could not initialize Amplify");
+        }
     }
 }
