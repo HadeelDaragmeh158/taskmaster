@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:2.44.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bc8b4956136222ed5c24bd62c003e916/transformed/aws-android-sdk-cognitoidentityprovider-asf-2.44.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bc8b4956136222ed5c24bd62c003e916/transformed/aws-android-sdk-cognitoidentityprovider-asf-2.44.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bc8b4956136222ed5c24bd62c003e916/transformed/aws-android-sdk-cognitoidentityprovider-asf-2.44.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c6e529ee3ab96c671b0f9817bc43f260/transformed/aws-android-sdk-cognitoidentityprovider-asf-2.44.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c6e529ee3ab96c671b0f9817bc43f260/transformed/aws-android-sdk-cognitoidentityprovider-asf-2.44.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c6e529ee3ab96c671b0f9817bc43f260/transformed/aws-android-sdk-cognitoidentityprovider-asf-2.44.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

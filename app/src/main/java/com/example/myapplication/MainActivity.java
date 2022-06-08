@@ -1,9 +1,13 @@
 package com.example.myapplication;
-
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +23,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.DataStoreException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +36,17 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private List<String> titles = new ArrayList<>();
-    private Task[] tasks = new Task[]{
-            new Task("Task1","basic of Android ","New"),
-            new Task("Task2","Data in task master ","Assigned"),
-            new Task("Task3","RecyclerViews for Displaying Lists of Data ","Complete"),
-            new Task("Task4","Room ","New")
-    };
+    List<Task>  allTasks = new ArrayList<>();
+
+    private String TITLE = "title";
+    private String ID = "taskId";
+    private Handler handler;
+//    private Task[] tasks = new Task[]{
+//            Task.builder().title("Task1").description("").build(),
+//            new Task("Task2","Data in task master ","Assigned"),
+//            new Task("Task3","RecyclerViews for Displaying Lists of Data ","Complete"),
+//            new Task("Task4","Room ","New")
+//    };
 
 
     @Override
@@ -39,15 +54,59 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//
+        configurAmplify();
+
+//        Task item = com.amplifyframework.datastore.generated.model.Task.builder()
+//                .title(myTaskStr)
+//                .description(doSomthingStr )
+//                .status(state)
+//                .build();
+
+        handler = new Handler(Looper.getMainLooper(), msg -> {
+            String data = msg.getData().getString(TITLE);
+            String taskId = msg.getData().getString(ID);
 
 
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra(ID, taskId);
+
+            startActivity(intent);
+            return true;
+        });
+//         Data store query
+        Amplify.DataStore.query(Task.class,
+                tasks -> {
+                    while (tasks.hasNext()) {
+                        Task task = tasks.next();
+
+                        Log.i(TAG, "==== Task ====");
+                        Log.i(TAG, "Name: " + task.getTitle());
+                    }
+                },
+                failure -> Log.e(TAG, "Could not query DataStore", failure)
+        );
+//
+
+
+        Amplify.API.query(
+                ModelQuery.list(Task.class, Task.TITLE.contains("Task")),
+                response -> {
+                    if (response.hasData()) {
+                        for (Task task : response.getData())
+                            allTasks.add(task);
+                         }
+                    },
+                error ->{
+                    Log.e(TAG,"ERROR", error);
+                }
+//
+        );
 
         Button addTaskButton    = findViewById(R.id.addTaskButton);
         Button allTaskButton    = findViewById(R.id.allTaskButton);
         Button sittingButton    = findViewById(R.id.sittingButton);
-//        Button buttonTask1      = findViewById(R.id.buttonTask1);
-//        Button buttonTask2      = findViewById(R.id.buttonTask2);
-//        Button buttonTask3      = findViewById(R.id.buttonTask3);
+
 
         addTaskButton.setOnClickListener(v -> {
 
@@ -73,90 +132,54 @@ public class MainActivity extends AppCompatActivity {
             startActivity(sittingIntent);
 
         });
+        List<Task> allTtasks = new ArrayList<>();
 
-//
-//        buttonTask1.setOnClickListener(v->{
-//
-//            Log.i(TAG, "Button buttonTask1");
-//
-//            Intent taskDetailIntent = new Intent(this,TaskDetail.class);
-//            taskDetailIntent.putExtra("Title",buttonTask1.getText().toString());
-//            startActivity(taskDetailIntent);
-//
-//        });
-//
-//
-//        buttonTask2.setOnClickListener(v->{
-//
-//            Log.i(TAG, "Button buttonTask2");
-//
-//            Intent taskDetailIntent = new Intent(this,TaskDetail.class);
-//            taskDetailIntent.putExtra("Title",buttonTask2.getText().toString());
-//            startActivity(taskDetailIntent);
-//
-//        });
-//
-//
-//        buttonTask3.setOnClickListener(v->{
-//
-//            Log.i(TAG, "Button buttonTask3");
-//
-//            Intent taskDetailIntent = new Intent(this,TaskDetail.class);
-//            taskDetailIntent.putExtra("Title",buttonTask3.getText().toString());
-//            startActivity(taskDetailIntent);
-//
-//        });
-
-        List<Task> tasks = AppDatabase.getInstance(getApplicationContext()).userDao().getAllTasks();
-
-        ListView ListTasks = findViewById(R.id.tasks);
+        ListView listView = findViewById(R.id.tasks);
         ArrayAdapter<Task> taskArrayAdapter = new ArrayAdapter<Task>(
                 this,
-                android.R.layout.simple_list_item_2,
-                android.R.id.text2,
-                tasks
+                android.R.layout.simple_list_item_1,
+                allTtasks
         ) {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-                    TextView title = (TextView) view.findViewById(android.R.id.text1);
-                    TextView body = (TextView) view.findViewById(android.R.id.text2);
+                View view = super.getView(position, convertView, parent);
+                TextView title = (TextView) view.findViewById(android.R.id.text1);
+                TextView body = (TextView) view.findViewById(android.R.id.text2);
 
-                    title.setText(tasks.get(position).getTitle());
-                    body.setText(tasks.get(position).getBody());
-
-                    return view;
-            }
+                title.setText(allTtasks.get(position).getTitle());
+                body.setText(allTtasks.get(position).getDescription());
+                return  null;
+            };
         };
-//        tasksList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent taskIntent = new Intent(getApplicationContext(),TaskDetail.class);
-//                taskIntent.putExtra("title",tasks[i].getTitle());
-//                taskIntent.putExtra("body",tasks[i].getBody());
-//                taskIntent.putExtra("state",tasks[i].getState());
-//                startActivity(taskIntent);
-//            }
-//        });
-        ListTasks.setAdapter(taskArrayAdapter);
 
-        ListTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        listView.setAdapter(taskArrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent taskIntent = new Intent(getApplicationContext(),TaskDetail.class);
-                taskIntent.putExtra("title",tasks.get(position).getTitle());
-                taskIntent.putExtra("body",tasks.get(position).getBody());
-                taskIntent.putExtra("state",tasks.get(position).getState());
+                taskIntent.putExtra("title",allTtasks.get(position).getTitle());
+                taskIntent.putExtra("body",allTtasks.get(position).getDescription());
+                taskIntent.putExtra("state",allTtasks.get(position).getStatus());
                 startActivity(taskIntent);
             }
         });
 
-
-
     }
 
+private void configurAmplify(){
 
+        try{
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i(TAG,"Initialised Amplify");
+        } catch (AmplifyException e) {
+            Log.i(TAG, "Could not initialize Amplify");
+        }
+}
     @Override
     protected void onStart() {
             super.onStart();
