@@ -4,14 +4,32 @@ import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.InitializationStatus;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,11 +40,24 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddTask extends AppCompatActivity {
     private static final String TAG = "Tagtest";
 
-    private Handler handler ;
+    private String[] mState = new String[]{"New",  "In progress","Assigned", "complete"};
+    private String[] mTeams = new String[]{"Team1", "Team2", "Team3"};
 
+    private Handler handler ;
+    private InterstitialAd mInterstitialAd;
+    private RewardedAd mRewardedAd;
+    @SuppressLint("MissingPermission")
+
+//TODO be cearefull you need check it for what ***********************************************
+    public static final String TASK_ID = "taskId";
+    public static final String TEAMNAME = "teamName";
+    public static final String DATA = "data";
 
 
     @Override
@@ -34,9 +65,17 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        final String[] mState = new String[]{"New",  "In progress","Assigned", "complete"};
 
         Spinner taskStateSelector = findViewById(R.id.stateSpinner);
+        Spinner teamsSelector  = findViewById(R.id.teams);
+//___________________________________________________________________
+//_________________________42________________________________________
+//___________________________________________________________________
+
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
                 this ,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
@@ -73,7 +112,7 @@ public class AddTask extends AppCompatActivity {
             String state = taskStateSelector.getSelectedItem().toString();
 
 
-            Task item = com.amplifyframework.datastore.generated.model.Task.builder()
+            Task item = Task.builder()
                     .title(myTaskStr)
                     .description(doSomthingStr )
                     .status(state)
@@ -114,6 +153,39 @@ public class AddTask extends AppCompatActivity {
 //
 //            Toast.makeText(this, "Task Submitted : "+task.getBody(), Toast.LENGTH_SHORT).show();
         });
+
+
+
+        List<Team> teams = new ArrayList<>();
+
+
+        Amplify.API.query(
+                ModelQuery.list(Team.class),
+
+                success -> {
+                    for (Team team : success.getData()) {
+                        teams.add(team);
+                    }
+                    handler = new Handler(Looper.getMainLooper(), msg -> {
+                        ArrayAdapter<CharSequence> spinnerAdapterTeam = new ArrayAdapter<CharSequence>(
+                                this,
+                                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                                mTeams
+                        );
+                        teamsSelector.setAdapter(spinnerAdapterTeam);
+                        return true;
+
+                    });
+                    Bundle bundle = new Bundle();
+                    bundle.putString("TeamTaskID", success.toString());
+
+                    Message message = new Message();
+                    message.setData(bundle);
+
+                    handler.sendMessage(message);
+                },
+                error -> Log.e(TAG, "ERROR Query", error)
+        );
     }
 
     @Override
@@ -157,4 +229,10 @@ public class AddTask extends AppCompatActivity {
             Log.i(TAG, "Could not initialize Amplify");
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    /////////////////////////////42//////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////
 }
