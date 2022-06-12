@@ -11,26 +11,28 @@
         android:id="@+id/textView3"
         android:layout_width="196dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="584dp"
         android:fontFamily="casual"
         android:text="Add Task "
         android:textColor="@color/teal_700"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.208"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.328" />
 
     <Button
         android:id="@+id/addTask_addTaskPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
         android:text="ADD TASK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.862" />
 
     <EditText
         android:id="@+id/myTask"
@@ -44,20 +46,22 @@
         app:layout_constraintHorizontal_bias="0.283"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintVertical_bias="0.413" />
 
     <EditText
         android:id="@+id/doSomthing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="392dp"
+        android:layout_marginBottom="420dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Do Somthing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.283"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTask"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/taskTitle"
@@ -89,10 +93,10 @@
         android:text="Total Tasks: 0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintHorizontal_bias="0.725"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.834" />
 
     <TextView
         android:id="@+id/submittdText"
@@ -115,16 +119,18 @@
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
+        app:layout_constraintVertical_bias="0.603" />
 
     <Spinner
         android:id="@+id/teams"
-        android:layout_width="339dp"
-        android:layout_height="42dp"
+        android:layout_width="284dp"
+        android:layout_height="43dp"
         app:layout_constraintBottom_toTopOf="@+id/submittdText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stateSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/stateSpinner"
+        app:layout_constraintVertical_bias="0.578" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,7 +54,7 @@ public class AddTask extends AppCompatActivity {
     private RewardedAd mRewardedAd;
     @SuppressLint("MissingPermission")
 
-//TODO be cearefull you need check it for what ***********************************************
+
     public static final String TASK_ID = "taskId";
     public static final String TEAMNAME = "teamName";
     public static final String DATA = "data";
@@ -67,14 +67,10 @@ public class AddTask extends AppCompatActivity {
 
 
         Spinner taskStateSelector = findViewById(R.id.stateSpinner);
+        //-------------------33
         Spinner teamsSelector  = findViewById(R.id.teams);
-//___________________________________________________________________
-//_________________________42________________________________________
-//___________________________________________________________________
-
-
-/////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
+        String selectedTeam = teamsSelector.getSelectedItem().toString();
+        //-----------------------------
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
                 this ,
@@ -93,7 +89,7 @@ public class AddTask extends AppCompatActivity {
 
             }
         });
-
+/////////////////////////////////////////////
         Button addTask_addTaskPageButton = findViewById(R.id.addTask_addTaskPage);
         TextView submittdText= findViewById(R.id.submittdText);
 
@@ -123,7 +119,13 @@ public class AddTask extends AppCompatActivity {
                 success -> Log.i(TAG, "Saved item: " + success.getData().getTitle()),
                 error -> Log.e(TAG, "Could not save item to API", error)
         );
+//___________________________________________________________________
+//_________________________42________________________________________
+//___________________________________________________________________
 
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 //            Amplify.API.query(
 //                    ModelQuery.list(Task.class, Task.TITLE.contains("Task")),
 //                    response -> {
@@ -153,10 +155,12 @@ public class AddTask extends AppCompatActivity {
 //
 //            Toast.makeText(this, "Task Submitted : "+task.getBody(), Toast.LENGTH_SHORT).show();
         });
+//___________________________________________________________________
+//_________________________33________________________________________
+//___________________________________________________________________
 
 
-
-        List<Team> teams = new ArrayList<>();
+        List<Team> teamArrayList = new ArrayList<>();
 
 
         Amplify.API.query(
@@ -164,7 +168,7 @@ public class AddTask extends AppCompatActivity {
 
                 success -> {
                     for (Team team : success.getData()) {
-                        teams.add(team);
+                        teamArrayList.add(team);
                     }
                     handler = new Handler(Looper.getMainLooper(), msg -> {
                         ArrayAdapter<CharSequence> spinnerAdapterTeam = new ArrayAdapter<CharSequence>(
@@ -184,9 +188,67 @@ public class AddTask extends AppCompatActivity {
 
                     handler.sendMessage(message);
                 },
-                error -> Log.e(TAG, "ERROR Query", error)
+                error -> Log.e(
+                        TAG,
+                        "ERROR in API Query",
+                        error
+                )
         );
+        addTask_addTaskPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                EditText addTitle = findViewById(R.id.myTask);
+                EditText AddBody = findViewById(R.id.doSomthing);
+                Spinner stateSelector = findViewById(R.id.stateSpinner);
+                Spinner teamSelector = findViewById(R.id.teams);
+
+                String taskName = addTitle.getText().toString();
+                String doSomth = AddBody.getText().toString();
+                String state = stateSelector.getSelectedItem().toString();
+                String teamName = teamSelector.getSelectedItem().toString();
+
+                Amplify.API.query(
+                        ModelQuery.list(Team.class),
+                        response -> {
+                            for (Team team : response.getData()) {
+                                if (teamName.equals(team.getName())) {
+                                    Task task = Task.builder()
+                                            .title(taskName)
+                                            .description(doSomth)
+                                            .status(state)
+                                            .teamTasksId(team.getId())
+                                            .build();
+
+                                    Amplify.API.mutate(
+                                            ModelMutation.create(task),
+                                            success -> Log.i(
+                                                    TAG,
+                                                    "Saved Successfully " + success.getData().getTitle()),
+                                            error -> Log.e(
+                                                    TAG,
+                                                    "fatal",
+                                                    error
+                                            )
+                                    );
+                                }
+                            }
+                        },
+                        error -> Log.e(TAG, "Query Error", error)
+                );
+
+
+                Toast.makeText(getApplicationContext(), "Submitted!" + getTitle(), Toast.LENGTH_SHORT).show();
+
+
+                Intent BackToMain = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(BackToMain);
+
+            }
+        });
     }
+
+
 
     @Override
     protected void onStart() {
@@ -229,6 +291,7 @@ public class AddTask extends AppCompatActivity {
             Log.i(TAG, "Could not initialize Amplify");
         }
     }
+
 
     ///////////////////////////////////////////////////////////////////////////
     /////////////////////////////42//////////////////////////////////////////////

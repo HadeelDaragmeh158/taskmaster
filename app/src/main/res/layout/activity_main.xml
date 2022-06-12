@@ -86,7 +86,7 @@
 
 
     <Button
-        android:id="@+id/btnRew"
+        android:id="@+id/rewarded"
         android:layout_width="152dp"
         android:layout_height="53dp"
         android:layout_margin="10dp"

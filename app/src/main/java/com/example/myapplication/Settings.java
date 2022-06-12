@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.AddTask.TEAMNAME;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,15 +12,26 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Team;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Settings extends AppCompatActivity {
 
     public static final String USERNAME ="username" ;
     private static final String TAG = Settings.class.getSimpleName();
     private EditText editUsername;
+//////////////////////////33
+    private Spinner  sellectTeam = findViewById(R.id.sellectTeam);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +87,41 @@ public class Settings extends AppCompatActivity {
                 }
             }
         });
+
+
+        //////////////////33
+        List<Team> teams = new ArrayList<>();
+
+        Amplify.API.query(
+                ModelQuery.list(Team.class),
+
+                success->{
+                        for(Team team : success.getData()){
+                            teams.add(team);
+                        }
+                    runOnUiThread(() -> {
+                        String[] teamName = new String[teams.size()];
+
+                        for (int i = 0; i < teams.size(); i++) {
+                            teamName[i] = teams.get(i).getName();
+                        }
+                        //Adapter
+                        ArrayAdapter<CharSequence> adapterTeams = new ArrayAdapter<CharSequence>(
+                                this,
+                                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                                teamName
+                        );
+                        adapterTeams.notifyDataSetChanged();
+                        sellectTeam.setAdapter(adapterTeams);
+                    });
+                            },
+                    error->
+                            Log.i(
+                            TAG,
+                            "Error in Api query",
+                            error
+                    )
+        );
     }
 
     private void saveUsername() {
@@ -86,6 +134,13 @@ public class Settings extends AppCompatActivity {
         preferenceEditor.apply();
 
         Toast.makeText(this, "Username Saved", Toast.LENGTH_SHORT).show();
+
+
+        ///////////33
+        String nameOfTheTeam = sellectTeam.getSelectedItem().toString();
+        preferenceEditor.putString(TEAMNAME, nameOfTheTeam);
+        preferenceEditor.apply();
+
     }
 
 }
