@@ -1,6 +1,9 @@
 package com.example.myapplication;
+import com.amplifyframework.analytics.AnalyticsEvent;
+import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.datastore.generated.model.Task;
 
 import android.content.Intent;
@@ -28,6 +31,7 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.DataStoreException;
+import com.amplifyframework.predictions.aws.AWSPredictionsPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -215,4 +219,7 @@ private void configurAmplify(){
             Log.i(TAG, "onDestroy: called");
             super.onDestroy();
             }
+
+
+
 }

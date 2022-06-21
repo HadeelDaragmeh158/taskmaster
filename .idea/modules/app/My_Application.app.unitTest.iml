@@ -50,7 +50,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.13.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:aws-api:1.35.3@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:core:1.35.3@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:core:1.35.4@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.legacy:legacy-support-v4:1.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.core:core:1.7.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
@@ -109,11 +109,11 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-dynamic-features-runtime:2.3.4@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.play:core:1.9.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:aws-api-appsync:1.35.3@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-auth-core:2.44.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-core:2.44.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-mobile-client:2.44.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.44.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:2.44.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-auth-core:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-core:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-mobile-client:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:2.46.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:aws-datastore:1.35.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex:2.0.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.reactivex.rxjava3:rxandroid:3.0.0@aar" level="project" />
@@ -129,6 +129,17 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-measurement-base:18.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.ump:user-messaging-platform:1.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-ads-identifier:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:aws-predictions:1.35.4@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-comprehend:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-polly:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-rekognition:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-textract:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-translate:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:aws-analytics-pinpoint:1.35.4@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-pinpoint:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amplifyframework:aws-auth-cognito:1.35.4@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amazonaws:aws-android-sdk-cognitoauth:2.46.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.browser:browser:1.3.0@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="My_Application.app.main" />
 </module>
