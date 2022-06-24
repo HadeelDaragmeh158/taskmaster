@@ -5,6 +5,7 @@ type Task @model {
   title: String!
   description: String
   status: String
+  notes: [Note] @hasMony
 }
 type Note @model {
   id: ID!
