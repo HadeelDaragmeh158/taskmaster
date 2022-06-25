@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "taskmaster_identitypool_dc898514",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "taskma74cc1d1c",
     "userPoolName": "taskmaster_userpool_74cc1d1c",
     "autoVerifiedAttributes": [
@@ -37,7 +37,7 @@
     "resourceName": "taskmaster",
     "sharedId": "dc898514",
     "serviceName": "Cognito",
-    "useDefault": "manual",
+    "useDefault": "defaultSocial",
     "authRoleArn": {
       "Fn::GetAtt": [
         "AuthRole",
@@ -52,6 +52,13 @@
     },
     "breakCircularDependency": true,
     "useEnabledMfas": true,
-    "dependsOn": []
+    "dependsOn": [],
+    "hostedUI": true,
+    "userPoolGroupList": [],
+    "hostedUIDomainName": "taskmasterbc536fc7-bc536fc7",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"taskmaster://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#/\"],\"LogoutURLs\":[\"https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1/\"]}",
+    "authProviders": []
   }
 }

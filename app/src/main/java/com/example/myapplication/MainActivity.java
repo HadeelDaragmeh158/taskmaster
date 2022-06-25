@@ -1,13 +1,6 @@
 package com.example.myapplication;
-import com.amplifyframework.analytics.AnalyticsEvent;
-import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
-import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
-import com.amplifyframework.datastore.generated.model.Task;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,9 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,15 +19,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
-import com.amplifyframework.datastore.DataStoreException;
-import com.amplifyframework.predictions.aws.AWSPredictionsPlugin;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     private static final String TAG = "MainActivity";
     private List<String> titles = new ArrayList<>();
@@ -55,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 //
         configurAmplify();
