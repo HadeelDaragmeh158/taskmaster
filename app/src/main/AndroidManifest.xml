@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myapplication" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,21 +22,31 @@
             android:label="@string/title_activity_login">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-
        <activity android:name=".SignUpActivity"
            android:exported="false"
            android:label="@string/title_activity_signup"/>
-
-
         <activity
             android:name=".MainActivity"
             android:exported="false" >
-
         </activity>
+        <activity
+            android:name=".AllTasksView"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
+            android:exported="false" />
+        <activity
+            android:name=".TaskDetail"
+            android:exported="false" />
+        <activity
+            android:name=".AllTasks"
+            android:exported="false" />
+        <activity
+            android:name=".AddTask"
+            android:exported="false" />
     </application>
 
 </manifest>

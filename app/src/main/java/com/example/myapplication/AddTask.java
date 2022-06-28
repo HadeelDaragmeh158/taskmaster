@@ -1,30 +1,6 @@
 package com.example.myapplication;
 
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.InitializationStatus;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
-import com.amplifyframework.datastore.generated.model.Task;
-import com.amplifyframework.datastore.generated.model.Team;
-import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.OnUserEarnedRewardListener;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.rewarded.RewardItem;
-import com.google.android.gms.ads.rewarded.RewardedAd;
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,6 +16,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +36,8 @@ public class AddTask extends AppCompatActivity {
     private String[] mTeams = new String[]{"Team1", "Team2", "Team3"};
 
     private Handler handler ;
-    private InterstitialAd mInterstitialAd;
-    private RewardedAd mRewardedAd;
+//    private InterstitialAd mInterstitialA
+//    private RewardedAd mRewardedAd;
     @SuppressLint("MissingPermission")
 
 
@@ -291,7 +277,13 @@ public class AddTask extends AppCompatActivity {
             Log.i(TAG, "Could not initialize Amplify");
         }
     }
+    ///////////////////////////////////////////////////////////////////////////
+    /////////////////////////////37//////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    public void addImagetoS3(){
 
+    }
+    ///////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////
     /////////////////////////////42//////////////////////////////////////////////

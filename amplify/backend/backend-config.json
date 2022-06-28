@@ -1,31 +1,33 @@
 {
   "api": {
-    "amplifyDatasource": {
+    "finaltaskmaster": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
+      "dependsOn": [],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "description": "",
               "apiKeyExpirationDays": 7
             }
-          }
+          },
+          "additionalAuthenticationProviders": []
         }
       }
     }
   },
   "auth": {
-    "taskmaster": {
+    "finaltaskmaster5b48c9fc": {
       "service": "Cognito",
-      "serviceType": "managed",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
+      "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -43,22 +45,18 @@
       }
     }
   },
-  "analytics": {
-    "taskmaster": {
-      "service": "Pinpoint",
-      "providerPlugin": "awscloudformation"
+  "function": {
+    "S3Trigger0abd9ad6": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true
     }
   },
-  "predictions": {
-    "translateText2117f290": {
+  "storage": {
+    "s30dbc5b8a": {
+      "service": "S3",
       "providerPlugin": "awscloudformation",
-      "service": "Translate",
-      "convertType": "translateText"
-    },
-    "speechGenerator652e261d": {
-      "providerPlugin": "awscloudformation",
-      "service": "Polly",
-      "convertType": "speechGenerator"
+      "dependsOn": []
     }
   }
 }
