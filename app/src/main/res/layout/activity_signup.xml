@@ -78,13 +78,14 @@
 
     <TextView
         android:id="@+id/signupPrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="95dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="44dp"
+        android:text="Log In"
+        android:textColor="#3F51B5"
         android:textSize="20dp"
-        android:layout_marginTop="32dp"
-        android:text="Sign_Up_Prompt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_button" />
 

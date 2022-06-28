@@ -45,11 +45,11 @@
         app:layout_constraintVertical_bias="0.758"
         tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="173dp"
-            android:layout_height="119dp"
-            app:srcCompat="@android:drawable/sym_def_app_icon" />
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="173dp"-->
+<!--            android:layout_height="119dp"-->
+<!--            app:srcCompat="@android:drawable/sym_def_app_icon" />-->
     </ListView>
 
     <Button

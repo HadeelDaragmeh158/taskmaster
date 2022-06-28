@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -10,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.predictions.models.LanguageType;
@@ -84,7 +84,6 @@ public class TaskDetail extends AppCompatActivity {
 
     private void translate ()
     {
-        AmplifyApp myAmplifyApp= new AmplifyApp();
         Amplify.Predictions.translateText(
                 body,
                 LanguageType.ENGLISH,

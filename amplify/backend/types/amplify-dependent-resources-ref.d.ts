@@ -1,17 +1,15 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "amplifyDatasource": {
+        "finaltaskmaster": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "auth": {
-        "taskmaster": {
+        "finaltaskmaster5b48c9fc": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
-            "HostedUIDomain": "string",
-            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
@@ -19,23 +17,18 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientID": "string"
         }
     },
-    "analytics": {
-        "taskmaster": {
+    "function": {
+        "S3Trigger0abd9ad6": {
+            "Name": "string",
+            "Arn": "string",
             "Region": "string",
-            "Id": "string",
-            "appName": "string"
+            "LambdaExecutionRole": "string"
         }
     },
-    "predictions": {
-        "translateText2117f290": {
-            "region": "string",
-            "sourceLang": "string",
-            "targetLang": "string"
-        },
-        "speechGenerator652e261d": {
-            "region": "string",
-            "language": "string",
-            "voice": "string"
+    "storage": {
+        "s30dbc5b8a": {
+            "BucketName": "string",
+            "Region": "string"
         }
     }
 }

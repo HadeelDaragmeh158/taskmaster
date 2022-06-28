@@ -29,11 +29,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_signup);
 
+        final TextView signUpPrompt = findViewById(R.id.signupPrompt);
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button signUpButton = findViewById(R.id.signup_button);
         loadingProgressBar = findViewById(R.id.loading);
 
+        signUpPrompt.setOnClickListener(view -> {
+            Intent navigateToSignUpIntent = new Intent(this,LoginActivity.class);
+            startActivity(navigateToSignUpIntent);
+        });
+
+
+        ///
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -54,6 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+
     }
 
     private void signUp(String email, String password) {
@@ -61,7 +70,6 @@ public class SignUpActivity extends AppCompatActivity {
         // add as many attributes as you wish
         AuthSignUpOptions options = AuthSignUpOptions.builder()
                 .userAttribute(AuthUserAttributeKey.email(), email)
-                .userAttribute(AuthUserAttributeKey.nickname(), "John Doe")
                 .build();
 
         Amplify.Auth.signUp(email, password, options,
@@ -78,9 +86,10 @@ public class SignUpActivity extends AppCompatActivity {
                 error -> {
                     Log.e(TAG, "Sign up failed", error);
                     // show a dialog of the error below
-                    // error.getMessage()
+//                     error.getMessage()
                 }
         );
 
     }
+
 }

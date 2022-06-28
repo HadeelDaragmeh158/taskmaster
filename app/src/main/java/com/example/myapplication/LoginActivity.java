@@ -13,7 +13,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.predictions.aws.AWSPredictionsPlugin;
+//import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,18 +32,23 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        final TextView signUpPrompt = findViewById(R.id.signupPrompt);
+        configure();
+
+        final TextView signUpPrompt = findViewById(R.id.signinPrompt);
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         loadingProgressBar = findViewById(R.id.loading);
+
 
         signUpPrompt.setOnClickListener(view -> {
             Intent navigateToSignUpIntent = new Intent(this,SignUpActivity.class);
             startActivity(navigateToSignUpIntent);
         });
 
+
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -68,5 +79,21 @@ public class LoginActivity extends AppCompatActivity {
                 },
                 error -> Log.e(TAG, error.toString())
         );
+    }
+
+    private void configure(){
+        try {
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSPredictionsPlugin());
+//            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
+//            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+            Amplify.configure(getApplicationContext());
+
+            Log.i("AmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("AmplifyApp", "Could not initialize Amplify", error);
+        }
     }
 }
