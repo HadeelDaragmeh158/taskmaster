@@ -24,5 +24,13 @@
     <string name="button_sign_in">"Sign In"</string>
     <string name="title_activity_signup">SignupActivity</string>
     <string name="label_enter_code">label enter code</string>
+    <string name="btn_playSound">Play Sound</string>
+    <string name="Title">Title</string>
+    <string name="Description_TaskDetails">Description</string>
+    <string name="Status">Status</string>
+    <string name="State"> State </string>
+    <string name="textTranslated">Translate</string>
+    <string name="btn_translate">Translate</string>
+    <string name="Upload">upload Image</string>
 
 </resources>

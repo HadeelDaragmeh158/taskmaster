@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import static com.example.myapplication.AddTask.TEAMNAME;
-
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -26,9 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Settings extends AppCompatActivity {
-
-    public static final String USERNAME ="username" ;
     private static final String TAG = Settings.class.getSimpleName();
+
+    public static final String USERNAME ="username";
+    public static final String TEAMNAME = "teamName";
     private EditText editUsername;
 //////////////////////////33
     private Spinner  sellectTeam = findViewById(R.id.sellectTeam);

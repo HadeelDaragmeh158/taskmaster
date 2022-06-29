@@ -14,11 +14,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.AmplifyException;
-import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.predictions.aws.AWSPredictionsPlugin;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
 //import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class LoginActivity extends AppCompatActivity {
@@ -84,11 +83,11 @@ public class LoginActivity extends AppCompatActivity {
     private void configure(){
         try {
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSPredictionsPlugin());
-//            Amplify.addPlugin(new AWSDataStorePlugin());
+//            Amplify.addPlugin(new AWSPredictionsPlugin());
+            Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSApiPlugin());
 //            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+//            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.configure(getApplicationContext());
 
             Log.i("AmplifyApp", "Initialized Amplify");

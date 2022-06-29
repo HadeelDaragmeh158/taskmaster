@@ -18,13 +18,18 @@
         <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_all_tasks.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_all_tasks_view.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_login.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_main.xml" value="0.14493373236425822" />
-        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_main2.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_main2.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_settings.xml" value="0.2375" />
         <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_signUp.xml" value="0.19581017528858485" />
         <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_task_detail.xml" value="0.264" />
-        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_verification.xml" value="0.13125267208208635" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_task_recycler_view.xml" value="0.15755329008341057" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_task_recycler_view_adapter.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/layout/activity_verification.xml" value="0.264" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/menu/menue.xml" value="0.17528858486532706" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/Desktop/AndroidLTUC/Day27/taskmaster/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>
